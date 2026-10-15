@@ -303,3 +303,7 @@ th.r, td.r { text-align: right; }
 
 .setting-row { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); }
 @media (max-width: 760px) { .setting-row { grid-template-columns: 1fr; gap: 10px; } }
+
+.legal h2 { margin-top: 24px; }
+.legal ul { padding-left: 20px; }
+.legal li { margin-bottom: 6px; }

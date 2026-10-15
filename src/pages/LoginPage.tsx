@@ -58,6 +58,7 @@ export function LoginPage({ onOffline }: { onOffline: () => void }) {
           Parents and guardians sign in the same way. The student adds your email under Settings → Guardians.
         </p>
         <button className="link-btn small" onClick={onOffline}>Use without an account on this device</button>
+        <p className="tiny faint" style={{ marginTop: 24 }}><a href="/privacy">Privacy policy</a> · <a href="/terms">Terms of service</a></p>
       </div>
     </div>
   );

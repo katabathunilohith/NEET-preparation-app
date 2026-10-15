@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { PrivacyPage, TermsPage } from './pages/LegalPages';
 import { useAuth } from './cloud/auth';
 import { Layout } from './components/Layout';
 import { ChapterPage } from './pages/ChapterPage';
@@ -20,6 +21,7 @@ import { StoreProvider, useStore } from './store/store';
 
 export function Root() {
   const auth = useAuth();
+  const { pathname } = useLocation();
   const [offline, setOffline] = useState(() => {
     try {
       return localStorage.getItem(OFFLINE_FLAG) === '1';
@@ -28,6 +30,9 @@ export function Root() {
     }
   });
 
+  // Public pages (linked from Google's consent screen) — no sign-in needed.
+  if (pathname === '/privacy') return <PrivacyPage />;
+  if (pathname === '/terms') return <TermsPage />;
   if (auth.enabled && auth.loading) return <div className="splash">Loading…</div>;
   if (auth.enabled && !auth.session && !offline)
     return <LoginPage onOffline={() => { try { localStorage.setItem(OFFLINE_FLAG, '1'); } catch { /* ignore */ } setOffline(true); }} />;
